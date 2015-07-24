@@ -20,9 +20,10 @@ import libraryjava.parseJSON;
 
 public class Playlist extends ActionBarActivity {
 
+    int idSong;
     parseJSON jasonArray;
-    String title, artist, imgUrl, id, idSong;
-    ArrayList musicNames;
+    String title, artist, imgUrl;
+    //ArrayList musicNames;
     String pictureName;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class Playlist extends ActionBarActivity {
 
         LinearLayout.LayoutParams imgLL = new LinearLayout.LayoutParams(85, 85);
         ListView listView = (ListView) findViewById(R.id.lview);
+        final ArrayList<String> idSongs = new ArrayList<String>();
         final ArrayList<String> musicNames = new ArrayList<String>();
         final ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, musicNames);
@@ -43,19 +45,17 @@ public class Playlist extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
                 Toast.makeText(getApplicationContext(), ((TextView) itemClicked).getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Player.class);
-                intent.putExtra("MusicID", idSong);
-                Log.d("55555555555555555555", idSong);
+                long songId = adapter.getItemId(position);
+                intent.putExtra("MusicID", id);
+                //Log.d("55555555555555555555", idSongs.toString());
+                Log.d("55555555555555555555", String.valueOf(songId));
                 startActivity(intent);
             }
         });
 
-        //ImageManager IM = new ImageManager();
-        //ImageView imageView=(ImageView) findViewById(R.id.iView);
-
-
         for (int i = 0; i < jasonArray.getJsonArray().length(); i++) {
             try {
-                idSong = jasonArray.getJsonArray().getJSONObject(i).getString("aid");
+                //idSong = jasonArray.getJsonArray().getJSONObject(i).getInt("aid");
                 artist = jasonArray.getJsonArray().getJSONObject(i).getString("artist");
                 title = jasonArray.getJsonArray().getJSONObject(i).getString("title");
                 //pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
@@ -80,8 +80,9 @@ public class Playlist extends ActionBarActivity {
                 Log.d("fjgjhgjhggh", title);
                 Log.d("fjgjhgjhggh", artist);
                 Log.d("fjgjhgjhggh", imgUrl);
-                Log.d("fjgjhgjhggh", idSong);
-                musicNames.add(artist + " - " + title);
+                //Log.isLoggable("IIIIIIIIIIIDDDDDDDDDDDDDD", idSong);
+                musicNames.add(artist + " - " + title + " - " + idSong);
+                //idSongs.add(idSong);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
