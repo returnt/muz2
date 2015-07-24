@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     Button btnLogin;
     EditText etEmail, etPassword;
     TextView RegisterLink;
-    Button btnVK;
+    ImageButton btnVK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         RegisterLink = (TextView) findViewById(R.id.RegisterLink);
-        btnVK = (Button) findViewById(R.id.btnVK);
+        btnVK = (ImageButton) findViewById(R.id.btnVK);
 
         btnVK.setOnClickListener(new View.OnClickListener() {
             @Override
