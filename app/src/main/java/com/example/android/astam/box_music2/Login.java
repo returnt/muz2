@@ -1,6 +1,7 @@
 package com.example.android.astam.box_music2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     Button btnLogin;
     EditText etEmail, etPassword;
     TextView RegisterLink;
+    Button btnVK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,14 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         RegisterLink = (TextView) findViewById(R.id.RegisterLink);
+        btnVK = (Button) findViewById(R.id.btnVK);
+
+        btnVK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), vk.class));
+            }
+        });
 
         RegisterLink.setOnClickListener(this);
         final HttpRequest req = new HttpRequest();
@@ -60,13 +70,25 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
 
                     Map<String, String> map = new HashMap<String, String>();
 
-                    map.put("mail", "findViewById(R.id.etEmail);");
+                    map.put("mail", ((EditText) findViewById(R.id.etEmail)).getText().toString());
 
-                    map.put("pass", "findViewById(R.id.etPassword);");
+                    map.put("pass", ((EditText) findViewById(R.id.etPassword)).getText().toString());
 
                     try {
                         if (!req.makePostRequestGetJsonArray("http://muz.returnt.ru/main/auth", map).isNull("user")) {
                             Log.d("wwww", req.makePostRequestGetJsonArray("http://muz.returnt.ru/main/auth", map).getJSONArray("user").getJSONObject(0).getString("1") + "");
+
+                            /*String ml = etEmail.getText().toString();
+                            String p = etPassword.getText().toString();
+
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                            editor.putString(Email, ml);
+                            editor.putString(Password, p);
+                            editor.commit();
+
+                            in = new Intent(Login.this, welcome.class);
+                            startActivity(in);*/
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

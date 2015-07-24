@@ -42,5 +42,15 @@
         android:layout_gravity="center_horizontal"
         android:textStyle="bold"
         android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="vk"
+        android:id="@+id/btnVK"
+        android:layout_gravity="center_horizontal"
+        android:shadowColor="#1B58E4"
+        android:textColor="#0C1322"
+        android:background="@color/link_text_material_dark"
+        />
 
 </LinearLayout>

@@ -15,6 +15,7 @@
     <string name="plusVolume">+</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_register">Register</string>
+    <string name="title_activity_vk">vk</string>
     <string name="title_activity_personal_cabinet">Personal_cabinet</string>
 
 </resources>
