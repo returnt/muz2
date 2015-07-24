@@ -72,7 +72,7 @@ public class vk extends Activity {
         Log.i("VkWebViewClient onPageFinished", url);
 
                 //тут получаю токен
-        String token = url.substring(url.indexOf('=') + 1, url.indexOf('&'));
+        String token = url.substring(url.indexOf("user_id=") + 8);
         Log.d("url", token);
                 //заканчивается получение токена
 
