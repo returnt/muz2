@@ -58,7 +58,7 @@ public class Playlist extends ActionBarActivity {
                 //idSong = jasonArray.getJsonArray().getJSONObject(i).getInt("aid");
                 artist = jasonArray.getJsonArray().getJSONObject(i).getString("artist");
                 title = jasonArray.getJsonArray().getJSONObject(i).getString("title");
-                pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
+                //pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
                 imgUrl = "http://muz.returnt.ru/img/" + pictureName;
 
                 TextView textView = (TextView) findViewById(R.id.text);
