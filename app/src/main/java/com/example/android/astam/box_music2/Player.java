@@ -164,7 +164,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                     btnReplay.setBackgroundResource(R.drawable.replay);
                 }else{
                     replay = true;
-                    btnReplay.setBackgroundResource(R.drawable.noreplay);
+                    btnReplay.setBackgroundResource(R.drawable.replayoff);
                 }
             }
         });
