@@ -17,5 +17,7 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_vk">vk</string>
     <string name="title_activity_personal_cabinet">Personal_cabinet</string>
+    <string name="title_activity_facebook">Facebook</string>
+    <string name="facebook">Facebook</string>
 
 </resources>

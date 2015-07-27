@@ -3,7 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/abc_search_url_text_normal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Авторизация"
+        android:textColor="@color/abc_primary_text_disable_only_material_light"
+        android:layout_gravity="center_horizontal"
+        android:textSize="23sp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,7 +24,7 @@
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,30 +37,60 @@
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"
         android:layout_height="wrap_content" />
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
     <Button
         android:id="@+id/btnLogin"
-        android:text="Login"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/RegisterLink"
+        android:text="Вход"
         android:layout_width="wrap_content"
-        android:text="Register now"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
+        android:layout_marginBottom="40dp"
         android:layout_height="wrap_content" />
-    <Button
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/RegisterLink"
+            android:layout_width="wrap_content"
+            android:text="Или войти через социальную сеть:"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/material_blue_grey_900"
+            android:layout_height="wrap_content"
+            />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="vk"
-        android:id="@+id/btnVK"
+        android:layout_gravity="center_horizontal">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/vk_icon"
+            android:id="@+id/btnVK"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="10dp"/>
+        <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/twitter_icon"
         android:layout_gravity="center_horizontal"
-        android:shadowColor="#1B58E4"
-        android:textColor="#0C1322"
-        android:background="@color/link_text_material_dark"
-        />
+            android:layout_marginRight="10dp"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/facebook_icon"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</LinearLayout>
+    </LinearLayout>
+
 
 </LinearLayout>

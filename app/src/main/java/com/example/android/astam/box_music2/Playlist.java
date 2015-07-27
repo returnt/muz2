@@ -1,10 +1,6 @@
 package com.example.android.astam.box_music2;
 
-import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,78 +12,77 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONException;
-
-import java.net.URI;
 import java.util.ArrayList;
-
 import libraryjava.parseJSON;
 
 public class Playlist extends ActionBarActivity {
 
+    int idSong;
     parseJSON jasonArray;
-    String list1;
-    String list2;
-    String imgUrl;
-    ArrayList musicNames;
+    String title, artist, imgUrl;
+    //ArrayList musicNames;
     String pictureName;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
 
-        jasonArray = new parseJSON("http://muz.returnt.ru/main/getmusiccategory/1", "music");
-        //ListView listView = (ListView) findViewById(R.id.lview);
+        jasonArray = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id=61631342", "response");
+
+        LinearLayout.LayoutParams imgLL = new LinearLayout.LayoutParams(85, 85);
+        ListView listView = (ListView) findViewById(R.id.lview);
+        final ArrayList<String> idSongs = new ArrayList<String>();
         final ArrayList<String> musicNames = new ArrayList<String>();
         final ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, musicNames);
-        //listView.setAdapter(adapter);
+        listView.setAdapter(adapter);
 
-        /*ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        final ArrayList<ImageView> pictures = new ArrayList<ImageView>();
-        final ArrayAdapter<ImageView> adapter1;
-        adapter1 = new ArrayAdapter<ImageView>(this, R.layout.list_item, pictures);*/
-
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
                 Toast.makeText(getApplicationContext(), ((TextView) itemClicked).getText(), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), Player.class));
+                Intent intent = new Intent(getApplicationContext(), Player.class);
+                long songId = adapter.getItemId(position);
+                intent.putExtra("MusicID", id);
+                //Log.d("55555555555555555555", idSongs.toString());
+                Log.d("55555555555555555555", String.valueOf(songId));
+                startActivity(intent);
             }
-        });*/
-
-        //ImageView imageView=(ImageView) findViewById(R.id.iView);
-
-        //ImageManager IM = new ImageManager();
-        //ImageView imageView=(ImageView) findViewById(R.id.iView);
-
+        });
 
         for (int i = 0; i < jasonArray.getJsonArray().length(); i++) {
             try {
-                list2 = jasonArray.getJsonArray().getJSONObject(i).getString("muz_music_author");
-                list1 = jasonArray.getJsonArray().getJSONObject(i).getString("muz_music_name_def");
-                pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
+                //idSong = jasonArray.getJsonArray().getJSONObject(i).getInt("aid");
+                artist = jasonArray.getJsonArray().getJSONObject(i).getString("artist");
+                title = jasonArray.getJsonArray().getJSONObject(i).getString("title");
+                //pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
                 imgUrl = "http://muz.returnt.ru/img/" + pictureName;
 
-                Log.d("555666", jasonArray.doInBackground(imgUrl)+"");
-                LinearLayout TR = (LinearLayout) findViewById(R.id.liner_layout_spisok);
+                TextView textView = (TextView) findViewById(R.id.text);
+                Log.d("555666", jasonArray.doInBackground(imgUrl) + "");
+                LinearLayout lL = (LinearLayout) findViewById(R.id.imgLinerL);
                 ImageView imageView = new ImageView(this);
                 imageView.setImageBitmap(jasonArray.doInBackground(imgUrl));
-                TR.addView(imageView);
+                imageView.setAdjustViewBounds(true);
+                //imageView.setBaselineAlignBottom(true);
+                //imageView.setMinimumHeight(100);
+                //imageView.setMinimumWidth(100);
+                lL.addView(imageView, imgLL);
 
-                //ImageView imageView=(ImageView) findViewById(R.id.iView);
+                //ImageView imageView = (ImageView) findViewById(R.id.img);
+                //imageView.setImageBitmap(jasonArray.doInBackground(imgUrl));
+                //imageView.add(imageView);
+                // IM.fetchImage(imgUrl, iView);
 
-                //IM.fetchImage(imgUrl, imageView);
-
-                Log.d("fjgjhgjhggh", list1);
-                Log.d("fjgjhgjhggh", list2);
+                Log.d("fjgjhgjhggh", title);
+                Log.d("fjgjhgjhggh", artist);
                 Log.d("fjgjhgjhggh", imgUrl);
-                musicNames.add(list1 + " - " + list2);
+                //Log.isLoggable("IIIIIIIIIIIDDDDDDDDDDDDDD", idSong);
+                musicNames.add(artist + " - " + title + " - " + idSong);
+                //idSongs.add(idSong);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
