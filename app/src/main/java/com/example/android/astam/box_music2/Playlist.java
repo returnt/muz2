@@ -46,6 +46,7 @@ public class Playlist extends ActionBarActivity {
                 Intent intent = new Intent(getApplicationContext(), Player.class);
                 //long songId = adapter.getItemId(position);
                 intent.putExtra("musicID", String.valueOf(position+1));
+                intent.putExtra("category", getIntent().getStringExtra("category"));
                 //Log.d("999999999999999999", String.valueOf(id));
                 Log.d("55555555555555555555", String.valueOf(position));
                 startActivity(intent);
@@ -61,10 +62,10 @@ public class Playlist extends ActionBarActivity {
                 imgUrl = "http://muz.returnt.ru/img/" + pictureName;
 
                 TextView textView = (TextView) findViewById(R.id.text);
-                Log.d("muz_ico_name--------------------", jasonArray.doInBackground(imgUrl) + "");
+                //Log.d("muz_ico_name--------------------", jasonArray.doInBackground(imgUrl) + "");
                 LinearLayout lL = (LinearLayout) findViewById(R.id.imgLinerL);
                 ImageView imageView = new ImageView(this);
-                imageView.setImageBitmap(jasonArray.doInBackground(imgUrl));
+                imageView.setImageResource(R.drawable.oblogka);
                 imageView.setAdjustViewBounds(true);
                 //imageView.setBaselineAlignBottom(true);
                 imageView.setMinimumHeight(100);
