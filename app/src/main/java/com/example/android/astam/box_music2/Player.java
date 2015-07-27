@@ -45,8 +45,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     private Button btnUnlike;
     private ImageView btnReplay;
     boolean like = true;
-    private JSONArray tempmp;
-    private int trek = 0;
+    private JSONArray tempmp = null;
+    private int trek = 1;
     private SeekBar seekBar;
     private Handler handler;
     private TextView lineName;
@@ -340,8 +340,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             btnPlay.setBackgroundResource(R.drawable.pause);
             if (play) {
                 try {
-                    //Log.d("589", "" + tempmp.getJSONObject(trek).getString("url"));
-                    mediaPlayer.setDataSource(getApplicationContext(), Uri.parse(tempmp.getJSONObject(trek).getString("url")));
+                    Log.d("589", "" + tempmp.getJSONObject(trek).getString("url"));
+                    mediaPlayer.setDataSource(tempmp.getJSONObject(trek).getString("url"));
                     //mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mediaPlayer.setOnCompletionListener(this);
                     mediaPlayer.setOnPreparedListener(this);
@@ -351,7 +351,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
 
                     play = false;
 
-                    lineName.setText(tempmp.getJSONObject(trek).getString("artist")+" || "+tempmp.getJSONObject(trek).getString("title"));
+                    lineName.setText(tempmp.getJSONObject(trek).getString("artist") + " || " + tempmp.getJSONObject(trek).getString("title"));
 
                 } catch (IOException e) {
                     e.printStackTrace();

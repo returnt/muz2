@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -91,7 +92,40 @@ public class parseJSON {
         }
     }
 
+    /**
+     * Bitmap
+     * @param urll
+     * @return Bitmap
+     */
     public Bitmap doInBackground(String urll) {
+        StrictMode();
+
+        try {
+
+            URL url = new URL(urll);
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+
+            return myBitmap;
+
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    /**
+     * method Bitmap deprecated
+     * @param urll
+     * @return
+     */
+    public Bitmap doInBackgroundDeprecated(String urll) {
+        StrictMode();
+
         try {
             URL url = new URL(urll);
 
@@ -104,6 +138,7 @@ public class parseJSON {
             InputStream input = bufferedEntity.getContent();
 
             return BitmapFactory.decodeStream(input);
+
         } catch (Exception ex) {
             return null;
         }
@@ -116,8 +151,6 @@ public class parseJSON {
     public JSONArray getJsonArray() {
         return JsonArray ;
     }
-
-
 
     private void StrictMode(){
 

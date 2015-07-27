@@ -18,7 +18,7 @@ import org.json.JSONException;
 import libraryjava.parseJSON;
 
 
-public class Genre extends ActionBarActivity {
+public class Genres extends ActionBarActivity {
     parseJSON imgParser;
     parseJSON jasonParser;
     private LinearLayout.LayoutParams img;
