@@ -21,7 +21,7 @@ import libraryjava.parseJSON;
 public class Playlist extends ActionBarActivity {
 
     int idSong;
-    parseJSON jasonArray;
+    private parseJSON jasonArray;
     String title, artist, imgUrl;
     //ArrayList musicNames;
     String pictureName;
@@ -30,7 +30,7 @@ public class Playlist extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
 
-        jasonArray = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id=61631342", "response");
+        jasonArray = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id="+getIntent().getStringExtra("category"), "response");
 
         LinearLayout.LayoutParams imgLL = new LinearLayout.LayoutParams(85, 85);
         ListView listView = (ListView) findViewById(R.id.lview);
@@ -85,6 +85,7 @@ public class Playlist extends ActionBarActivity {
                 e.printStackTrace();
             }
         }
+        Log.d("555", getIntent().getStringExtra("category")+"");
     }
 
     @Override
