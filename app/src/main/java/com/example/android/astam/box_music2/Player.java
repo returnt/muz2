@@ -351,7 +351,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
 
                     play = false;
 
-                    //lineName.setText(tempmp.getJSONObject(trek).getString("artist")+" || "+tempmp.getJSONObject(trek).getString("title"));
+                    lineName.setText(tempmp.getJSONObject(trek).getString("artist")+" || "+tempmp.getJSONObject(trek).getString("title"));
 
                 } catch (IOException e) {
                     e.printStackTrace();
