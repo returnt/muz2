@@ -21,7 +21,7 @@ import libraryjava.parseJSON;
 public class Playlist extends ActionBarActivity {
 
     int idSong;
-    private parseJSON jasonArray;
+    parseJSON jasonArray;
     String title, artist, imgUrl;
     //ArrayList musicNames;
     String pictureName;
@@ -45,7 +45,7 @@ public class Playlist extends ActionBarActivity {
                 Toast.makeText(getApplicationContext(), ((TextView) itemClicked).getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Player.class);
                 //long songId = adapter.getItemId(position);
-                intent.putExtra("musicID", String.valueOf(position+1));
+                intent.putExtra("musicID", String.valueOf(position + 1));
                 //Log.d("999999999999999999", String.valueOf(id));
                 Log.d("55555555555555555555", String.valueOf(position));
                 startActivity(intent);
@@ -54,14 +54,14 @@ public class Playlist extends ActionBarActivity {
 
         for (int i = 0; i < jasonArray.getJsonArray().length(); i++) {
             try {
-                //idSong = jasonArray.getJsonArray().getJSONObject(i).getInt("aid");
+                idSong = jasonArray.getJsonArray().getJSONObject(i).getInt("aid");
                 artist = jasonArray.getJsonArray().getJSONObject(i).getString("artist");
                 title = jasonArray.getJsonArray().getJSONObject(i).getString("title");
-                pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
-                imgUrl = "http://muz.returnt.ru/img/" + pictureName;
+                //pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
+                //imgUrl = "http://muz.returnt.ru/img/" + pictureName;
 
                 TextView textView = (TextView) findViewById(R.id.text);
-                Log.d("muz_ico_name--------------------", jasonArray.doInBackground(imgUrl) + "");
+                Log.d("muz_ico_name-----------", jasonArray.doInBackground(imgUrl) + "");
                 LinearLayout lL = (LinearLayout) findViewById(R.id.imgLinerL);
                 ImageView imageView = new ImageView(this);
                 imageView.setImageBitmap(jasonArray.doInBackground(imgUrl));
@@ -85,7 +85,6 @@ public class Playlist extends ActionBarActivity {
                 e.printStackTrace();
             }
         }
-        Log.d("555", getIntent().getStringExtra("category")+"");
     }
 
     @Override
