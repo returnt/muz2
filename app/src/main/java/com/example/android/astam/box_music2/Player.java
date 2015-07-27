@@ -46,7 +46,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     private ImageView btnReplay;
     boolean like = true;
     private JSONArray tempmp;
-    private int trek = 1;
+    public int trek = 1;
     private SeekBar seekBar;
     private Handler handler;
     private TextView lineName;
@@ -58,6 +58,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     private ImageView imgVolumeImage = null;
     boolean replay = true;
     boolean mReplay = true;
+    String musicID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         lineName = (TextView) findViewById(R.id.lineNametr);
         linearLayoutProgress = (LinearLayout) findViewById(R.id.progress);
         imgVolumeImage = (ImageView) findViewById(R.id.volumeimage);
+        musicID = getIntent().getStringExtra("musicID");
+        trek = Integer.parseInt(musicID);
 
         imgVolumeImage.setOnClickListener(new View.OnClickListener() {
             @Override

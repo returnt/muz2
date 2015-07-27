@@ -36,7 +36,7 @@
             android:label="@string/title_activity_playlist" >
         </activity>
         <activity
-            android:name=".Genre"
+            android:name=".Genres"
             android:label="@string/title_activity_genre" >
         </activity>
         <activity

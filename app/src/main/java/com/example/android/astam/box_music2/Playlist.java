@@ -45,10 +45,10 @@ public class Playlist extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
                 Toast.makeText(getApplicationContext(), ((TextView) itemClicked).getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Player.class);
-                long songId = adapter.getItemId(position);
-                intent.putExtra("MusicID", id);
-                //Log.d("55555555555555555555", idSongs.toString());
-                Log.d("55555555555555555555", String.valueOf(songId));
+                //long songId = adapter.getItemId(position);
+                intent.putExtra("musicID", String.valueOf(position));
+                //Log.d("999999999999999999", String.valueOf(id));
+                Log.d("55555555555555555555", String.valueOf(position));
                 startActivity(intent);
             }
         });
@@ -81,7 +81,7 @@ public class Playlist extends ActionBarActivity {
                 Log.d("fjgjhgjhggh", artist);
                 Log.d("fjgjhgjhggh", imgUrl);
                 //Log.isLoggable("IIIIIIIIIIIDDDDDDDDDDDDDD", idSong);
-                musicNames.add(artist + " - " + title + " - " + idSong);
+                musicNames.add(artist + " - " + title);
                 //idSongs.add(idSong);
             } catch (JSONException e) {
                 e.printStackTrace();
