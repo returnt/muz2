@@ -217,7 +217,7 @@
                     android:id="@+id/btnReplay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/noreplay"/>
+                    android:background="@drawable/replayoff"/>
             </LinearLayout>
 
         </LinearLayout>
