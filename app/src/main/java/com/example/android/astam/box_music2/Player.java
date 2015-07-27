@@ -59,6 +59,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     boolean replay = true;
     boolean mReplay = true;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,7 +166,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                     btnReplay.setBackgroundResource(R.drawable.replay);
                 }else{
                     replay = true;
-                    btnReplay.setBackgroundResource(R.drawable.noreplay);
+                    btnReplay.setBackgroundResource(R.drawable.replayoff);
                 }
             }
         });
@@ -294,10 +295,12 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         });
     }
 
+
     private void seekBarChange(View v) {
         if(mediaPlayer.isPlaying()) {
             SeekBar sb = (SeekBar) v;
             mediaPlayer.seekTo(sb.getProgress());
+
         }
     }
 
@@ -311,7 +314,9 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         progressBar.setProgress(100);
+
     }
+
 
     /**
      * Click back+
@@ -396,7 +401,6 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         mReplay = !mReplay;
     }*/
 
-    
 /*
     private void onClickk(View view) {
 
@@ -418,3 +422,6 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     }
 */
 }
+
+
+

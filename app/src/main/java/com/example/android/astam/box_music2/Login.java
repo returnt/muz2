@@ -36,6 +36,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     EditText etEmail, etPassword;
     TextView RegisterLink;
     ImageButton btnVK;
+    ImageButton facebook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,15 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         etPassword = (EditText) findViewById(R.id.etPassword);
         RegisterLink = (TextView) findViewById(R.id.RegisterLink);
         btnVK = (ImageButton) findViewById(R.id.btnVK);
+        facebook = (ImageButton) findViewById(R.id.facebook);
+
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Facebook.class));
+            }
+        });
+
 
         btnVK.setOnClickListener(new View.OnClickListener() {
             @Override

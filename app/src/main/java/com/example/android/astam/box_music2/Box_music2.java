@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -92,34 +94,35 @@ public class Box_music2 extends Activity {
 
     private void setVerticalCat(){
 
-        layoutCatIco = new LinearLayout.LayoutParams(100,  100);
-        layoutCatTitle = new LinearLayout.LayoutParams(100,  100);
-        layoutCatIco.setMargins(30,10,10,0);
-        layoutCatTitle.setMargins(30,-10,10,10);
+        layoutCatIco = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        layoutCatTitle = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        //layoutCatIco.setMargins(30,10,10,0);
+        //layoutCatTitle.setMargins(30,-10,10,10);
 
         for (int i = 0; i < 3; i++) {
             btnGreen = new ImageView(this);
             titleCat = new TextView(this);
 
-            Log.d(""+i,""+Color.BLUE);
+            Log.d("" + i, "" + Color.BLUE);
             btnGreen.setId(i);
             btnGreen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(getApplicationContext(), Player.class);
+                    Intent in = new Intent(getApplicationContext(), Genre.class);
                     startActivityForResult(in, 100);
                 }
             });
 
             btnGreen.setImageResource(R.drawable.wewew);
-            btnGreen.setMinimumWidth(100);
-            btnGreen.setMinimumHeight(100);
+            //btnGreen.setImageResource(R.drawable.bebeb);
+            //btnGreen.setMinimumWidth(100);
+            //btnGreen.setMinimumHeight(100);
 
-            titleCat.setText(i + "wewew");
+            titleCat.setText("wewew");
             titleCat.setRotationY(-20);
             titleCat.setRotationX(30);
             titleCat.setTextColor(Color.WHITE);
-            titleCat.setTextSize(16);
+            //titleCat.setTextSize(48);
             titleCat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -130,8 +133,9 @@ public class Box_music2 extends Activity {
             catTitle.addView(titleCat, layoutCatTitle);
         }
         catAll = new ImageView(this);
-        layoutCatIcoAll = new LinearLayout.LayoutParams(40,70);
-        layoutCatIcoAll.setMargins(10,30,10,10);
+        layoutCatIcoAll = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //layoutCatIcoAll.setMargins(10,30,10,10);
+
         catAll.setBackgroundResource(R.drawable.alll);
         catAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,16 +148,16 @@ public class Box_music2 extends Activity {
 
     private void setVerticalNew(){
 
-        layoutCatIco = new LinearLayout.LayoutParams(100,  100);
-        layoutCatTitle = new LinearLayout.LayoutParams(100,  100);
-        layoutCatIco.setMargins(30,10,10,10);
-        layoutCatTitle.setMargins(30,-8,10,10);
+        layoutCatIco = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        layoutCatTitle = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        //layoutCatIco.setMargins(30,10,10,10);
+        //layoutCatTitle.setMargins(30,-8,10,10);
 
         for (int i = 0; i < 3; i++) {
             btnGreen = new ImageView(this);
             titleCat = new TextView(this);
 
-            Log.d(""+i,""+Color.BLUE);
+            Log.d("" + i, "" + Color.BLUE);
             btnGreen.setId(i);
             btnGreen.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -162,13 +166,13 @@ public class Box_music2 extends Activity {
                 }
             });
 
-            btnGreen.setImageResource(R.drawable.uioo);
-            btnGreen.setMinimumWidth(100);
-            btnGreen.setMinimumHeight(100);
+            btnGreen.setImageResource(R.drawable.oblogka);
+            //btnGreen.setMinimumWidth(100);
+            //btnGreen.setMinimumHeight(100);
 
-            titleCat.setText(i + "wewewe");
+            titleCat.setText("wewewe");
             titleCat.setTextColor(Color.WHITE);
-            titleCat.setTextSize(14);
+            //titleCat.setTextSize(14);
             titleCat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -180,8 +184,8 @@ public class Box_music2 extends Activity {
         }
 
         catAll = new ImageView(this);
-        layoutCatIcoAll = new LinearLayout.LayoutParams(40,70);
-        layoutCatIcoAll.setMargins(10,30,10,10);
+        layoutCatIcoAll = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //layoutCatIcoAll.setMargins(10,30,10,10);
         catAll.setBackgroundResource(R.drawable.alll);
         catAll.setOnClickListener(new View.OnClickListener() {
             @Override
