@@ -288,7 +288,8 @@
     </LinearLayout>
 
     <TextView
-        android:text="START | lunch 20.00 | Dinner 60.00 | Travel 60.00 | Doctor 5000.00 | lunch 20.00 | Dinner 60.00 | Travel 60.00 | Doctor 5000.00 | END"
+        android:text=""
+
         android:textColor="#fff"
         android:id="@+id/lineNametr"
         android:layout_width="fill_parent"

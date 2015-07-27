@@ -39,6 +39,50 @@
                     android:layout_weight="0.63"
                     android:gravity="center_vertical|center_horizontal">
 
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical|center_horizontal">
+                        android:background="@drawable/bebeb"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/categoria1"
+                            android:src="@drawable/bebeb" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/categoria2"
+                            android:src="@drawable/wewew" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical|center_horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/categoria3" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
