@@ -46,7 +46,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     private ImageView btnReplay;
     boolean like = true;
     private JSONArray tempmp;
-    public int trek = 1;
+    private int trek = 1;
     private SeekBar seekBar;
     private Handler handler;
     private TextView lineName;
@@ -59,6 +59,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     boolean replay = true;
     boolean mReplay = true;
     String musicID;
+    int pointVolume;
 
 
     @Override
@@ -77,19 +78,23 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         linearLayoutProgress = (LinearLayout) findViewById(R.id.progress);
         imgVolumeImage = (ImageView) findViewById(R.id.volumeimage);
         musicID = getIntent().getStringExtra("musicID");
-        trek = Integer.parseInt(musicID);
+        if (musicID != null) {
+            trek = Integer.parseInt(musicID);
+            Log.d("Nazvanie pesni--------", musicID);
+        }
 
         imgVolumeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (volumeImage) {
                     volumeImage = false;
+                    pointVolume = seekBarVolume.getProgress();
                     seekBarVolume.setProgress(0);
                     imgVolumeImage.setImageResource(R.drawable.red_line);
 
                 } else {
                     volumeImage = true;
-                    seekBarVolume.setProgress(100);
+                    seekBarVolume.setProgress(pointVolume);
                     imgVolumeImage.setImageResource(R.drawable.vois);
                 }
 
@@ -100,13 +105,18 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             @Override
             public void onClick(View view) {
                 seekBarVolume.setProgress(seekBarVolume.getProgress() - 1);
+                if (seekBarVolume.getProgress() == 0){
+                    imgVolumeImage.setImageResource(R.drawable.red_line);
+                }
             }
         });
+
 
         findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 seekBarVolume.setProgress(seekBarVolume.getProgress() + 1);
+                imgVolumeImage.setImageResource(R.drawable.vois);
             }
         });
 
@@ -231,6 +241,12 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                 public void onProgressChanged(SeekBar arg0, int progress, boolean arg2) {
                     audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                             progress, 0);
+                    imgVolumeImage.setImageResource(R.drawable.vois);
+                    if (seekBarVolume.getProgress() == 0){
+                        imgVolumeImage.setImageResource(R.drawable.red_line);
+                    }
+
+
                 }
             });
         } catch (Exception e) {

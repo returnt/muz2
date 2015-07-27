@@ -108,7 +108,7 @@ public class Box_music2 extends Activity {
             btnGreen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(getApplicationContext(), Genre.class);
+                    Intent in = new Intent(getApplicationContext(), Genres.class);
                     startActivityForResult(in, 100);
                 }
             });

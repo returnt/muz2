@@ -34,7 +34,6 @@ public class Playlist extends ActionBarActivity {
 
         LinearLayout.LayoutParams imgLL = new LinearLayout.LayoutParams(85, 85);
         ListView listView = (ListView) findViewById(R.id.lview);
-        final ArrayList<String> idSongs = new ArrayList<String>();
         final ArrayList<String> musicNames = new ArrayList<String>();
         final ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, musicNames);
@@ -46,7 +45,7 @@ public class Playlist extends ActionBarActivity {
                 Toast.makeText(getApplicationContext(), ((TextView) itemClicked).getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Player.class);
                 //long songId = adapter.getItemId(position);
-                intent.putExtra("musicID", String.valueOf(position));
+                intent.putExtra("musicID", String.valueOf(position+1));
                 //Log.d("999999999999999999", String.valueOf(id));
                 Log.d("55555555555555555555", String.valueOf(position));
                 startActivity(intent);
@@ -58,24 +57,23 @@ public class Playlist extends ActionBarActivity {
                 //idSong = jasonArray.getJsonArray().getJSONObject(i).getInt("aid");
                 artist = jasonArray.getJsonArray().getJSONObject(i).getString("artist");
                 title = jasonArray.getJsonArray().getJSONObject(i).getString("title");
-                //pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
+                pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
                 imgUrl = "http://muz.returnt.ru/img/" + pictureName;
 
                 TextView textView = (TextView) findViewById(R.id.text);
-                Log.d("555666", jasonArray.doInBackground(imgUrl) + "");
+                Log.d("muz_ico_name--------------------", jasonArray.doInBackground(imgUrl) + "");
                 LinearLayout lL = (LinearLayout) findViewById(R.id.imgLinerL);
                 ImageView imageView = new ImageView(this);
                 imageView.setImageBitmap(jasonArray.doInBackground(imgUrl));
                 imageView.setAdjustViewBounds(true);
                 //imageView.setBaselineAlignBottom(true);
-                //imageView.setMinimumHeight(100);
-                //imageView.setMinimumWidth(100);
+                imageView.setMinimumHeight(100);
+                imageView.setMinimumWidth(100);
                 lL.addView(imageView, imgLL);
 
                 //ImageView imageView = (ImageView) findViewById(R.id.img);
                 //imageView.setImageBitmap(jasonArray.doInBackground(imgUrl));
                 //imageView.add(imageView);
-                // IM.fetchImage(imgUrl, iView);
 
                 Log.d("fjgjhgjhggh", title);
                 Log.d("fjgjhgjhggh", artist);
