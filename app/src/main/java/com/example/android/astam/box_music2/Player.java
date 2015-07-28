@@ -451,7 +451,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                 public void run() {
                     startProgressBar();
                     Log.d("myMusic:", "------ was started thred from method: startProgressBar.");
-                    timeSec.setText(new Date(mediaPlayer.getCurrentPosition()).getMinutes() + ":" + new Date(mediaPlayer.getCurrentPosition()).getSeconds() + "");
+                    String minutes = new Date(mediaPlayer.getCurrentPosition()).getSeconds() < 10 ? "0" + new Date(mediaPlayer.getCurrentPosition()).getSeconds() : new Date(mediaPlayer.getCurrentPosition()).getSeconds()+"";
+                    timeSec.setText(new Date(mediaPlayer.getCurrentPosition()).getMinutes() + ":" + minutes + "");
                 }
             };
             handler.postDelayed(rn, 1000);
