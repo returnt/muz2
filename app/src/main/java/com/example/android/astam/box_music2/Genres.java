@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -40,7 +41,7 @@ public class Genres extends ActionBarActivity {
         int width = size.x;
         int height = size.y;
 
-        RelativeLayout linearLayout = (RelativeLayout) findViewById(R.id.linearLayout);
+        GridLayout linearLayout = (GridLayout) findViewById(R.id.linearLayout);
          rr = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         img = new LinearLayout.LayoutParams(100, 100, LinearLayout.HORIZONTAL);
 
