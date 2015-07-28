@@ -2,101 +2,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/abc_search_url_text_normal"
+    android:orientation="vertical"
+    android:padding="@dimen/in_dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:text="Name:"
+        android:layout_marginBottom="@dimen/in_dp"
+        android:text="@string/name"
+        android:textSize="@dimen/register_text_size"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:hint="Name"
-        android:textSize="15dp" />
+        android:layout_marginBottom="@dimen/in_dp"
+        android:hint="@string/name"
+        android:textSize="@dimen/register_text_size" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Email:"
+        android:layout_marginBottom="@dimen/in_dp"
+        android:text="@string/mail"
+        android:textSize="@dimen/register_text_size"
         android:textStyle="bold" />
 
     <EditText
         android:id="@id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:hint="Email"
-        android:textSize="15dp" />
+        android:layout_marginBottom="@dimen/in_dp"
+        android:hint="@string/mail"
+        android:textSize="@dimen/register_text_size" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Password:"
+        android:layout_marginBottom="@dimen/in_dp"
+        android:text="@string/pass"
+        android:textSize="@dimen/register_text_size"
         android:textStyle="bold" />
 
     <EditText
         android:id="@id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:hint="Password"
+        android:layout_marginBottom="@dimen/in_dp"
+        android:hint="@string/pass"
         android:inputType="textPassword"
-        android:textSize="15dp" />
+        android:textSize="@dimen/register_text_size" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Confirm password:"
+        android:layout_marginBottom="@dimen/in_dp"
+        android:text="@string/pass"
+        android:textSize="@dimen/register_text_size"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/etCoPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:hint="Confirm password"
+        android:layout_marginBottom="@dimen/in_dp"
+        android:hint="@string/CoPass"
         android:inputType="textPassword"
-        android:textSize="15dp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp">
-
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Ok, Dima!" />
-
-        </ScrollView>
-
-        <CheckBox
-            android:id="@+id/etCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
+        android:textSize="@dimen/register_text_size" />
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="Register" />
+        android:layout_gravity="center"
+        android:text="@string/btn_register"
+        android:textSize="@dimen/register_text_size" />
 
 
 </LinearLayout>
