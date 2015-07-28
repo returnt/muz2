@@ -9,8 +9,10 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -19,13 +21,14 @@ import libraryjava.parseJSON;
 
 
 public class Genres extends ActionBarActivity {
-    parseJSON imgParser;
-    parseJSON jasonParser;
+    private parseJSON imgParser;
+    private parseJSON jasonParser;
     private LinearLayout.LayoutParams img;
     private LinearLayout.LayoutParams text;
     private String pictureName;
     private String imgUrl;
     private String name_genres;
+    private LinearLayout.LayoutParams rr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,9 @@ public class Genres extends ActionBarActivity {
         display.getSize(size);
         int width = size.x;
         int height = size.y;
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+
+        RelativeLayout linearLayout = (RelativeLayout) findViewById(R.id.linearLayout);
+         rr = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         img = new LinearLayout.LayoutParams(100, 100, LinearLayout.HORIZONTAL);
 
         text = new LinearLayout.LayoutParams(100, 100, LinearLayout.HORIZONTAL);
@@ -52,25 +57,23 @@ public class Genres extends ActionBarActivity {
             }
             ImageView img_btn = new ImageView(this);
             img_btn.setImageBitmap(jasonParser.doInBackground(imgUrl));
-            TextView img_tex = new TextView(this);
             img_btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     startActivity(new Intent(getApplicationContext(), Playlist.class));
                 }
             });
-            linearLayout.addView(img_btn, img);
+            TextView img_tex = new TextView(this);
             img_tex.setText(name_genres);
             img_tex.setRotationY(-20);
             img_tex.setRotationX(30);
             img_tex.setTextColor(Color.BLACK);
-            linearLayout.addView(img_tex, text);
             img_tex.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     startActivity(new Intent(getApplicationContext(), Playlist.class));
                 }
             });
-
-
+            linearLayout.addView(img_tex, text);
+            linearLayout.addView(img_btn, img);
         }
 
     }
