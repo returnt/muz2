@@ -1,6 +1,10 @@
 package com.example.android.astam.box_music2;
 
+<<<<<<< HEAD
 import android.app.Activity;
+=======
+import android.annotation.TargetApi;
+>>>>>>> 92ec220fd0bc8ceb41c4e655d9498e1bbbe898aa
 import android.content.Context;
 import android.content.pm.LabeledIntent;
 import android.graphics.Color;
@@ -9,6 +13,7 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
@@ -72,7 +77,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     private ImageView imgVolumeImage = null;
     boolean replay = true;
     boolean mReplay = true;
-    String musicID;
+    private String musicID;
+    private String category = "61878890";
     int pointVolume;
     private TextView timeall;
     private TextView timesec;
@@ -95,14 +101,32 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         lineName = (TextView) findViewById(R.id.lineNametr);
         linearLayoutProgress = (LinearLayout) findViewById(R.id.progress);
         imgVolumeImage = (ImageView) findViewById(R.id.volumeimage);
+
+        if(getIntent().getStringExtra("category")!=null)category = getIntent().getStringExtra("category");
+        tempmp = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id=" + category, "response").getJsonArray();
+        mediaPlayer = RSing.getMedia();
         musicID = getIntent().getStringExtra("musicID");
         if (musicID != null) {
-            trek = Integer.parseInt(musicID);
+            trek += 1;
+            backNext();
             Log.d("Nazvanie pesni--------", musicID);
+        }else {
+            mediaPlayer = RSing.getMedia();
+            Play();
+            progressBar();
+            Log.d("Nazvanie pesni--------", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         }
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 92ec220fd0bc8ceb41c4e655d9498e1bbbe898aa
         imgVolumeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +164,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             }
         });
 
-        tempmp = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id=61631342", "response").getJsonArray();
+
 
         //Log.d("898", tempmp.toString());
 
@@ -214,9 +238,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         });
 */
 
-        mediaPlayer = RSing.getMedia() /*new MediaPlayer()*/;
-        Play();
-        progressBar();
+
 
 
 /*
@@ -235,6 +257,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         });
 */
     }
+
 
     /**
      * seekBarVolume changes volume on the app's display
@@ -305,10 +328,15 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
      *
      * @param mp
      */
-    @Override
+
     public void onCompletion(MediaPlayer mp) {
+<<<<<<< HEAD
         linearLayoutProgress.addView(progressBar);
         if (trek < tempmp.length() - 1) {
+=======
+        //linearLayoutProgress.addView(progressBar);
+        if(trek < tempmp.length()-1){
+>>>>>>> 92ec220fd0bc8ceb41c4e655d9498e1bbbe898aa
             trek += 1;
             backNext();
         } else {
@@ -383,7 +411,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             btnPlay.setBackgroundResource(R.drawable.pause);
             if (play) {
                 try {
-                    Log.d("589", "" + tempmp.getJSONObject(trek).getString("url"));
+                    //Log.d("589", "" + tempmp.getJSONObject(trek).getString("url"));
                     mediaPlayer.setDataSource(tempmp.getJSONObject(trek).getString("url"));
                     //mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mediaPlayer.setOnCompletionListener(this);
