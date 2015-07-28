@@ -7,6 +7,7 @@
     android:padding="@dimen/margin_bottom">
 
     <TextView
+        android:id="@+id/textAuth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -16,6 +17,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/textMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_bottom"
@@ -31,6 +33,7 @@
         android:textSize="@dimen/auth_size_hint" />
 
     <TextView
+        android:id="@+id/textPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_bottom"
@@ -80,6 +83,7 @@
             android:background="@drawable/vk_icon" />
 
         <ImageButton
+            android:id="@+id/twitter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -92,7 +96,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/facebook_icon" />
+
     </LinearLayout>
+
 </LinearLayout>
 
 
