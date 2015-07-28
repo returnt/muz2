@@ -1,12 +1,16 @@
 package com.example.android.astam.box_music2;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.LabeledIntent;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.text.method.CharacterPickerDialog;
 import android.util.Log;
@@ -25,11 +29,21 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import javax.xml.datatype.Duration;
 
 import libraryjava.parseJSON;
 import libraryjava.RSing;
@@ -39,8 +53,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     private MediaPlayer mediaPlayer;
     private Boolean play = true;
     private ImageView btnPlay;
-   /* private Button btnStop;
-    private Button btnRestart;*/
+    /* private Button btnStop;
+     private Button btnRestart;*/
     private Button btnLike;
     private Button btnUnlike;
     private ImageView btnReplay;
@@ -60,6 +74,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     boolean mReplay = true;
     String musicID;
     int pointVolume;
+    private TextView timeall;
+    private TextView timesec;
 
 
     @Override
@@ -69,9 +85,11 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         setContentView(R.layout.activity_player);
         initControls();
 
+        timesec = (TextView)findViewById(R.id.audiostart);
+        timeall = (TextView)findViewById(R.id.audiostop);
         btnPlay = (ImageView) findViewById(R.id.BtnPlay);
         btnReplay = (ImageView) findViewById(R.id.btnReplay);
-        btnLike = (Button) findViewById (R.id.btnLike);
+        btnLike = (Button) findViewById(R.id.btnLike);
         btnUnlike = (Button) findViewById(R.id.btnUnlike);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         lineName = (TextView) findViewById(R.id.lineNametr);
@@ -82,6 +100,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             trek = Integer.parseInt(musicID);
             Log.d("Nazvanie pesni--------", musicID);
         }
+
+
 
         imgVolumeImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +125,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             @Override
             public void onClick(View view) {
                 seekBarVolume.setProgress(seekBarVolume.getProgress() - 1);
-                if (seekBarVolume.getProgress() == 0){
+                if (seekBarVolume.getProgress() == 0) {
                     imgVolumeImage.setImageResource(R.drawable.red_line);
                 }
             }
@@ -123,6 +143,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         tempmp = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id=61631342", "response").getJsonArray();
 
         //Log.d("898", tempmp.toString());
+
 
         /**
          * play media
@@ -160,9 +181,9 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                     btnLike.setBackgroundResource(R.drawable.previus);
                     btnUnlike.setBackgroundResource(R.drawable.next); // Произошел лайк, обращаемся к серверу.
                 } else {
-                    if(trek >= tempmp.length()-1){
+                    if (trek >= tempmp.length() - 1) {
                         trek = 1;
-                    }else {
+                    } else {
                         trek += 1;
                     }
                     backNext();
@@ -243,7 +264,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                     audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                             progress, 0);
                     imgVolumeImage.setImageResource(R.drawable.vois);
-                    if (seekBarVolume.getProgress() == 0){
+                    if (seekBarVolume.getProgress() == 0) {
                         imgVolumeImage.setImageResource(R.drawable.red_line);
                     }
 
@@ -264,6 +285,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
 
     /**
      * back menu
+     *
      * @param item
      * @return
      */
@@ -280,16 +302,16 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
 
     /**
      * end mp
-     * @param mp
      *
+     * @param mp
      */
     @Override
     public void onCompletion(MediaPlayer mp) {
         linearLayoutProgress.addView(progressBar);
-        if(trek < tempmp.length()-1){
+        if (trek < tempmp.length() - 1) {
             trek += 1;
             backNext();
-        }else {
+        } else {
             trek = 1;
             backNext();
         }
@@ -297,6 +319,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
 
     /**
      * start mp
+     *
      * @param mp
      */
     @Override
@@ -316,7 +339,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
 
 
     private void seekBarChange(View v) {
-        if(mediaPlayer.isPlaying()) {
+        if (mediaPlayer.isPlaying()) {
             SeekBar sb = (SeekBar) v;
             mediaPlayer.seekTo(sb.getProgress());
 
@@ -326,7 +349,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     /**
      * Start progress bar
      */
-    private void progressBar(){
+    private void progressBar() {
         progressBar = new ProgressBar(this, null,
                 android.R.attr.progressBarStyleLarge);
         progressBar.setLayoutParams(new LinearLayout.LayoutParams(
@@ -342,13 +365,14 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
      * Click Next
      * start
      */
-    private void backNext(){
+    private void backNext() {
         mediaPlayer.stop();
         mediaPlayer = RSing.setMedia();
         mediaPlayer = RSing.getMedia();
         play = true;
         Play();
     }
+
 
     /**
      * method start play
@@ -367,6 +391,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                     mediaPlayer.prepare();
                     mediaPlayer.start();
                     startProgressBar();
+                    timeall.setText(new Date(mediaPlayer.getDuration()).getMinutes() + ":" + new Date(mediaPlayer.getDuration()).getSeconds() + "");
 
                     play = false;
 
@@ -386,7 +411,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             mediaPlayer.pause();
             btnPlay.setBackgroundResource(R.drawable.play);
             Log.d("22", "22");
-        }else {
+        } else {
             btnPlay.setBackgroundResource(R.drawable.pause);
             play = false;
         }
@@ -398,7 +423,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     public void startProgressBar() {
         handler = new Handler();
         seekBar.setProgress(mediaPlayer.getCurrentPosition());
-        if(mediaPlayer.isPlaying()) {
+        timesec.setText(new Date(mediaPlayer.getCurrentPosition()).getMinutes() + ":" + new Date(mediaPlayer.getCurrentPosition()).getSeconds());
+        if (mediaPlayer.isPlaying()) {
             Runnable rn = new Runnable() {
                 @Override
                 public void run() {
@@ -412,6 +438,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             seekBar.setProgress(mediaPlayer.getCurrentPosition());
         }
     }
+
+
 
     /**
      * method updateReplay
@@ -440,7 +468,9 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         }
     }
 */
+
+
+
+
 }
-
-
 
