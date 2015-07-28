@@ -127,9 +127,10 @@
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:background="@drawable/fonnews"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:gravity="top|center_horizontal">
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -168,8 +169,51 @@
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.04"></LinearLayout>
+                android:layout_weight="0.04"></LinearLayout>-->
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"></LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"></LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="@string/auth_btn"
+                    android:id="@+id/auth_button"
+                    android:background="@drawable/auth_button_glav"
+                    android:layout_weight="0.3"
+                    android:textSize="@dimen/auth_button"
+                    android:typeface="normal"
+                    android:singleLine="false" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"></LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

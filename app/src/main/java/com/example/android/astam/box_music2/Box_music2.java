@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -111,8 +112,6 @@ public class Box_music2 extends Activity {
 
         layoutCatIco = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         layoutCatTitle = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-        //layoutCatIco.setMargins(30,10,10,0);
-        //layoutCatTitle.setMargins(30,-10,10,10);
 
         for (int i = 0; i < 3; ++i) {
             btnGreen = new ImageView(this);
@@ -142,15 +141,13 @@ public class Box_music2 extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            //btnGreen.setImageResource(R.drawable.bebeb);
-            //btnGreen.setMinimumWidth(100);
-            //btnGreen.setMinimumHeight(100);
 
             try {
-                titleCat.setText(parsJson.getJsonArray().getJSONObject(i).getString("muz_category_name"));
+                titleCat.setText(parsJson.getJsonArray().getJSONObject(i).getString("muz_category_desc"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
             titleCat.setRotation(-12);
             titleCat.setTextColor(Color.WHITE);
             //titleCat.setTextSize(48);
@@ -179,6 +176,13 @@ public class Box_music2 extends Activity {
             }
         });
         catIco.addView(catAll, layoutCatIcoAll);
+
+        findViewById(R.id.auth_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Login.class));
+            }
+        });
     }
 
     private void setVerticalNew(){
