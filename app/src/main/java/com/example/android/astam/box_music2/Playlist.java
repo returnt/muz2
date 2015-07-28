@@ -32,7 +32,7 @@ public class Playlist extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
 
-        jasonArray = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id=61631342", "response");
+        jasonArray = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id="+getIntent().getStringExtra("category"), "response");
 
         //LinearLayout.LayoutParams imgLL = new LinearLayout.LayoutParams(85, 85);
         ImageView imageView = (ImageView) findViewById(R.id.icon);
@@ -51,7 +51,7 @@ public class Playlist extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
-                Toast.makeText(getApplicationContext(), ((TextView) itemClicked).getText(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), ((TextView) itemClicked).getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Player.class);
                 //long songId = adapter.getItemId(position);
                 intent.putExtra("musicID", String.valueOf(position + 1));
