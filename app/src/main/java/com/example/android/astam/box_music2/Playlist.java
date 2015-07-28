@@ -24,7 +24,7 @@ public class Playlist extends ActionBarActivity {
     private parseJSON jasonArray;
     String title, artist, imgUrl;
     //ArrayList musicNames;
-    String pictureName;
+    //String pictureName;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,7 @@ public class Playlist extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
-                Toast.makeText(getApplicationContext(), ((TextView) itemClicked).getText(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), ((TextView) itemClicked).getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Player.class);
                 //long songId = adapter.getItemId(position);
                 intent.putExtra("musicID", String.valueOf(position+1));
@@ -59,7 +59,7 @@ public class Playlist extends ActionBarActivity {
                 artist = jasonArray.getJsonArray().getJSONObject(i).getString("artist");
                 title = jasonArray.getJsonArray().getJSONObject(i).getString("title");
                 //pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
-                imgUrl = "http://muz.returnt.ru/img/" + pictureName;
+                //imgUrl = "http://muz.returnt.ru/img/" + pictureName;
 
                 TextView textView = (TextView) findViewById(R.id.text);
                 //Log.d("muz_ico_name--------------------", jasonArray.doInBackground(imgUrl) + "");
