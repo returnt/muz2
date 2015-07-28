@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name">Name</string>
+    <string name="btn_register">Register</string>
+    <string name="CoPass">Confirm Password</string>
+</resources>
