@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -24,20 +26,27 @@ public class Playlist extends ActionBarActivity {
     parseJSON jasonArray;
     String title, artist, imgUrl;
     //ArrayList musicNames;
-    String pictureName;
+    //String pictureName;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
 
-        jasonArray = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id="+getIntent().getStringExtra("category"), "response");
+        jasonArray = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id=61631342", "response");
 
-        LinearLayout.LayoutParams imgLL = new LinearLayout.LayoutParams(85, 85);
+        //LinearLayout.LayoutParams imgLL = new LinearLayout.LayoutParams(85, 85);
+        ImageView imageView = (ImageView) findViewById(R.id.icon);
+        //imageView.setFocusable(false);
         ListView listView = (ListView) findViewById(R.id.lview);
+        listView.setItemsCanFocus(true);
+        TextView textView = (TextView) findViewById(R.id.text);
+        //textView.setSelected(true);
         final ArrayList<String> musicNames = new ArrayList<String>();
         final ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, musicNames);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text, musicNames);
         listView.setAdapter(adapter);
+        LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(this, R.anim.list_layout_controller);
+        listView.setLayoutAnimation(controller);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,8 +69,7 @@ public class Playlist extends ActionBarActivity {
                 //pictureName = jasonArray.getJsonArray().getJSONObject(i).getString("muz_ico_name");
                 //imgUrl = "http://muz.returnt.ru/img/" + pictureName;
 
-                TextView textView = (TextView) findViewById(R.id.text);
-                Log.d("muz_ico_name-----------", jasonArray.doInBackground(imgUrl) + "");
+                /*Log.d("muz_ico_name-----------", jasonArray.doInBackground(imgUrl) + "");
                 LinearLayout lL = (LinearLayout) findViewById(R.id.imgLinerL);
                 ImageView imageView = new ImageView(this);
                 imageView.setImageBitmap(jasonArray.doInBackground(imgUrl));
@@ -69,7 +77,7 @@ public class Playlist extends ActionBarActivity {
                 //imageView.setBaselineAlignBottom(true);
                 imageView.setMinimumHeight(100);
                 imageView.setMinimumWidth(100);
-                lL.addView(imageView, imgLL);
+                lL.addView(imageView, imgLL);*/
 
                 //ImageView imageView = (ImageView) findViewById(R.id.img);
                 //imageView.setImageBitmap(jasonArray.doInBackground(imgUrl));
@@ -77,7 +85,7 @@ public class Playlist extends ActionBarActivity {
 
                 Log.d("fjgjhgjhggh", title);
                 Log.d("fjgjhgjhggh", artist);
-                Log.d("fjgjhgjhggh", imgUrl);
+                //Log.d("fjgjhgjhggh", imgUrl);
                 //Log.isLoggable("IIIIIIIIIIIDDDDDDDDDDDDDD", idSong);
                 musicNames.add(artist + " - " + title);
                 //idSongs.add(idSong);
