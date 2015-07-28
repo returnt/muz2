@@ -24,6 +24,7 @@
     <string name="pass">Password</string>
     <string name="enter">Вход</string>
     <string name="register">Регистрация</string>
+    <string name="auth">Авторизация</string>
 
 
 

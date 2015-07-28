@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/in_dp"
         android:text="@string/name"
+        android:textSize="@dimen/register_text_size"
         android:textStyle="bold" />
 
     <EditText
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/in_dp"
         android:text="@string/mail"
+        android:textSize="@dimen/register_text_size"
         android:textStyle="bold" />
 
     <EditText
@@ -41,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/in_dp"
         android:text="@string/pass"
+        android:textSize="@dimen/register_text_size"
         android:textStyle="bold" />
 
     <EditText
@@ -57,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/in_dp"
         android:text="@string/pass"
+        android:textSize="@dimen/register_text_size"
         android:textStyle="bold" />
 
     <EditText
@@ -73,7 +77,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/btn_register" />
+        android:text="@string/btn_register"
+        android:textSize="@dimen/register_text_size" />
 
 
 </LinearLayout>

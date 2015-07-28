@@ -2,96 +2,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:background="@color/abc_search_url_text_normal"
     android:orientation="vertical"
-    android:background="@color/abc_search_url_text_normal">
+    android:padding="@dimen/margin_bottom">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Авторизация"
-        android:textColor="@color/abc_primary_text_disable_only_material_light"
         android:layout_gravity="center_horizontal"
-        android:textSize="23sp"
-        />
+        android:text="@string/auth"
+        android:textColor="@color/abc_primary_text_disable_only_material_light"
+        android:textSize="@dimen/auth_size"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="E-mail"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:text="@string/mail"
+        android:textSize="@dimen/auth_size" />
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:hint="@string/mail"
+        android:textSize="@dimen/auth_size_hint" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="Password"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:text="@string/pass"
+        android:textSize="@dimen/auth_size" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:hint="@string/pass"
         android:inputType="textPassword"
-        android:layout_height="wrap_content" />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center">
+        android:textSize="@dimen/auth_size_hint" />
+
     <Button
         android:id="@+id/btnLogin"
-        android:text="Вход"
         android:layout_width="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:layout_height="wrap_content" />
-</LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/RegisterLink"
-            android:layout_width="wrap_content"
-            android:text="Или войти через социальную сеть:"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textColor="@color/material_blue_grey_900"
-            android:layout_height="wrap_content"
-            />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:orientation="vertical">
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin_bottom_reg"
+        android:text="@string/enter"
+        android:textSize="@dimen/auth_size" />
+
+    <TextView
+        android:id="@+id/RegisterLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin_bottom_reg"
+        android:text="@string/register"
+        android:textColor="@color/material_blue_grey_900"
+        android:textSize="@dimen/auth_size"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
+
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/vk_icon"
             android:id="@+id/btnVK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginRight="10dp"/>
-        <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/twitter_icon"
-        android:layout_gravity="center_horizontal"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="@dimen/net_mar_right"
+            android:background="@drawable/vk_icon" />
+
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/facebook_icon"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/facebook" />
+            android:layout_marginRight="@dimen/net_mar_right"
+            android:background="@drawable/twitter_icon" />
+
+        <ImageButton
+            android:id="@+id/facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/facebook_icon" />
     </LinearLayout>
 </LinearLayout>
-    </LinearLayout>
 
 
-</LinearLayout>
