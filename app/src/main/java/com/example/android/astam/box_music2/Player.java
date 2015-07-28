@@ -1,10 +1,9 @@
 package com.example.android.astam.box_music2;
 
-<<<<<<< HEAD
+
 import android.app.Activity;
-=======
 import android.annotation.TargetApi;
->>>>>>> 92ec220fd0bc8ceb41c4e655d9498e1bbbe898aa
+
 import android.content.Context;
 import android.content.pm.LabeledIntent;
 import android.graphics.Color;
@@ -37,6 +36,8 @@ import org.json.JSONException;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -91,6 +92,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         setContentView(R.layout.activity_player);
         initControls();
 
+
         timesec = (TextView)findViewById(R.id.audiostart);
         timeall = (TextView)findViewById(R.id.audiostop);
         btnPlay = (ImageView) findViewById(R.id.BtnPlay);
@@ -118,15 +120,6 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         }
 
 
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> 92ec220fd0bc8ceb41c4e655d9498e1bbbe898aa
         imgVolumeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -258,6 +251,9 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
 */
     }
 
+    private void timeFormat() {
+    }
+
 
     /**
      * seekBarVolume changes volume on the app's display
@@ -330,13 +326,12 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
      */
 
     public void onCompletion(MediaPlayer mp) {
-<<<<<<< HEAD
+
         linearLayoutProgress.addView(progressBar);
         if (trek < tempmp.length() - 1) {
-=======
+
         //linearLayoutProgress.addView(progressBar);
         if(trek < tempmp.length()-1){
->>>>>>> 92ec220fd0bc8ceb41c4e655d9498e1bbbe898aa
             trek += 1;
             backNext();
         } else {
@@ -344,13 +339,14 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             backNext();
         }
     }
+    }
 
     /**
      * start mp
      *
      * @param mp
      */
-    @Override
+
     public void onPrepared(MediaPlayer mp) {
         linearLayoutProgress.removeView(progressBar);
 
@@ -421,6 +417,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                     startProgressBar();
                     timeall.setText(new Date(mediaPlayer.getDuration()).getMinutes() + ":" + new Date(mediaPlayer.getDuration()).getSeconds() + "");
 
+
                     play = false;
 
                     lineName.setText(tempmp.getJSONObject(trek).getString("artist") + " || " + tempmp.getJSONObject(trek).getString("title"));
@@ -451,7 +448,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     public void startProgressBar() {
         handler = new Handler();
         seekBar.setProgress(mediaPlayer.getCurrentPosition());
-        timesec.setText(new Date(mediaPlayer.getCurrentPosition()).getMinutes() + ":" + new Date(mediaPlayer.getCurrentPosition()).getSeconds());
+        timesec.setText(new Date(mediaPlayer.getCurrentPosition()).getMinutes() + ":" + new Date(mediaPlayer.getCurrentPosition()).getSeconds() + "");
         if (mediaPlayer.isPlaying()) {
             Runnable rn = new Runnable() {
                 @Override
@@ -466,6 +463,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             seekBar.setProgress(mediaPlayer.getCurrentPosition());
         }
     }
+
 
 
 
