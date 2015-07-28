@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.HashMap;
@@ -39,13 +40,16 @@ public class Box_music2 extends Activity {
     private LinearLayout.LayoutParams layoutCatIcoAll;
     private LinearLayout.LayoutParams layoutCatTitle;
     private Boolean orientation;
-    Player pl;
+    private parseJSON parsJson;
+    private JSONArray jasonArray;
+    //private parseJSON ff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         orientation = new  MDisplay().getScreenOrientation(this);
+        parsJson = new parseJSON("http://muz.returnt.ru/main/getcategories", "category");
         if(orientation){
             setContentView(R.layout.activity_box_music2);
 
@@ -73,6 +77,16 @@ public class Box_music2 extends Activity {
 
             }
         });
+
+
+
+        try {
+            Log.d("88888", parsJson.doInBackground("http://muz.returnt.ru/img/"+parsJson.getJsonArray().getJSONObject(1).getString("muz_category_img"))+"");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -96,67 +110,63 @@ public class Box_music2 extends Activity {
     private void setVerticalCat(){
 
         layoutCatIco = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-        layoutCatTitle = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        layoutCatTitle = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         //layoutCatIco.setMargins(30,10,10,0);
         //layoutCatTitle.setMargins(30,-10,10,10);
 
-        ImageView categoria1 = (ImageView) findViewById(R.id.categoria1);
+        for (int i = 0; i < 3; ++i) {
+            btnGreen = new ImageView(this);
+            titleCat = new TextView(this);
 
-        categoria1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(getApplicationContext(), Genre.class);
-                startActivityForResult(in, 100);
+            Log.d("" + i, "" + Color.BLUE);
+
+            btnGreen.setId(i);
+
+            btnGreen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int aa = 0;
+                    Intent in = new Intent(getApplicationContext(), Playlist.class);
+                    try {
+                        aa = parsJson.getJsonArray().getJSONObject(v.getId()).getInt("muz_category_albom");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    in.putExtra("category", aa + "");
+                    startActivity(in);
+                }
+            });
+
+            try {
+                btnGreen.setImageBitmap(parsJson.doInBackground("http://muz.returnt.ru/img/" + parsJson.getJsonArray().getJSONObject(i).getString("muz_category_img")));
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        });
+            //btnGreen.setImageResource(R.drawable.bebeb);
+            //btnGreen.setMinimumWidth(100);
+            //btnGreen.setMinimumHeight(100);
 
-        ImageView categoria2 = (ImageView) findViewById(R.id.categoria2);
-
-        categoria2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(getApplicationContext(), Genre.class);
-                startActivityForResult(in, 100);
+            try {
+                titleCat.setText(parsJson.getJsonArray().getJSONObject(i).getString("muz_category_name"));
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        });
+            titleCat.setRotation(-12);
+            titleCat.setTextColor(Color.WHITE);
+            //titleCat.setTextSize(48);
+            titleCat.setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.text_glav_ekran_category));
+            titleCat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(getApplicationContext(), Playlist.class);
 
-        titleCat = new TextView(this);
-        titleCat.setText("Drum'n'bass");
-        titleCat.setRotation(-10);
-        titleCat.setTextColor(Color.WHITE);
-        titleCat.setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.text_glav_ekran_category));
-        titleCat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-        catTitle.addView(titleCat, layoutCatTitle);
+                    startActivityForResult(in, 100);
+                }
+            });
 
-
-        titleCat = new TextView(this);
-        titleCat.setText("Blues");
-        titleCat.setRotation(-10);
-        titleCat.setTextColor(Color.WHITE);
-        titleCat.setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.text_glav_ekran_category));
-        titleCat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-        catTitle.addView(titleCat, layoutCatTitle);
-
-        titleCat = new TextView(this);
-        titleCat.setText("opa");
-        titleCat.setRotation(-10);
-        titleCat.setTextColor(Color.WHITE);
-        titleCat.setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.text_glav_ekran_category));
-        titleCat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-        catTitle.addView(titleCat, layoutCatTitle);
-
+            catIco.addView(btnGreen, layoutCatIco);
+            catTitle.addView(titleCat, layoutCatTitle);
+        }
         catAll = new ImageView(this);
         layoutCatIcoAll = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         //layoutCatIcoAll.setMargins(10,30,10,10);
@@ -173,15 +183,13 @@ public class Box_music2 extends Activity {
 
     private void setVerticalNew(){
 
-        layoutCatIco = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        /*layoutCatIco = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         layoutCatTitle = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         //layoutCatIco.setMargins(30,10,10,10);
         //layoutCatTitle.setMargins(30,-8,10,10);
-
         for (int i = 0; i < 3; i++) {
             btnGreen = new ImageView(this);
             titleCat = new TextView(this);
-
             Log.d("" + i, "" + Color.BLUE);
             btnGreen.setId(i);
             btnGreen.setOnClickListener(new View.OnClickListener() {
@@ -190,16 +198,12 @@ public class Box_music2 extends Activity {
                     startActivity(new Intent(Box_music2.this, Playlist.class));
                 }
             });
-
             btnGreen.setImageResource(R.drawable.oblogka);
             //btnGreen.setMinimumWidth(100);
             //btnGreen.setMinimumHeight(100);
-
             titleCat.setText("wewewe");
             titleCat.setTextColor(Color.WHITE);
-
             //titleCat.setTextSize(14);
-            titleCat.setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.text_glav_ekran_category));
             titleCat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -209,7 +213,6 @@ public class Box_music2 extends Activity {
             newsIco.addView(btnGreen, layoutCatIco);
             newsTitle.addView(titleCat, layoutCatTitle);
         }
-
         catAll = new ImageView(this);
         layoutCatIcoAll = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         //layoutCatIcoAll.setMargins(10,30,10,10);
@@ -217,10 +220,9 @@ public class Box_music2 extends Activity {
         catAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
-        newsIco.addView(catAll, layoutCatIcoAll);
+        newsIco.addView(catAll, layoutCatIcoAll);*/
     }
 
     private void setHorizontalCat(){
@@ -277,15 +279,13 @@ public class Box_music2 extends Activity {
 
     private void setHorizontalNew(){
 
-        layoutCatIco = new LinearLayout.LayoutParams(100,  100);
+        /*layoutCatIco = new LinearLayout.LayoutParams(100,  100);
         layoutCatTitle = new LinearLayout.LayoutParams(100,  25);
         layoutCatIco.setMargins(10,0,10,0);
         layoutCatTitle.setMargins(10,0,10,10);
-
         for (int i = 0; i < 3; i++) {
             btnGreen = new ImageView(this);
             titleCat = new TextView(this);
-
             Log.d(""+i,""+Color.BLUE);
             btnGreen.setId(i);
             btnGreen.setOnClickListener(new View.OnClickListener() {
@@ -294,11 +294,9 @@ public class Box_music2 extends Activity {
                     startActivity(new Intent(Box_music2.this, Playlist.class));
                 }
             });
-
             btnGreen.setImageResource(R.drawable.uioo);
             btnGreen.setMinimumWidth(100);
             btnGreen.setMinimumHeight(100);
-
             titleCat.setText(i + "wewew");
             titleCat.setTextColor(Color.WHITE);
             titleCat.setTextSize(16);
@@ -308,11 +306,9 @@ public class Box_music2 extends Activity {
                     startActivity(new Intent(Box_music2.this, Playlist.class));
                 }
             });
-
             newsIco.addView(btnGreen, layoutCatIco);
             newsIco.addView(titleCat, layoutCatTitle);
         }
-
         catAll = new ImageView(this);
         layoutCatIcoAll = new LinearLayout.LayoutParams(100,40);
         layoutCatIcoAll.setMargins(10,-3,10,10);
@@ -320,9 +316,8 @@ public class Box_music2 extends Activity {
         catAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
-        newsIco.addView(catAll, layoutCatIcoAll);
+        newsIco.addView(catAll, layoutCatIcoAll);*/
     }
 }

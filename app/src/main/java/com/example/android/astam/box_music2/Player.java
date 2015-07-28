@@ -45,7 +45,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     private Button btnUnlike;
     private ImageView btnReplay;
     boolean like = true;
-    private JSONArray tempmp;
+    private JSONArray tempmp = null;
     private int trek = 1;
     private SeekBar seekBar;
     private Handler handler;
@@ -58,6 +58,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     private ImageView imgVolumeImage = null;
     boolean replay = true;
     boolean mReplay = true;
+    String musicID;
+    int pointVolume;
 
 
     @Override
@@ -75,18 +77,24 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         lineName = (TextView) findViewById(R.id.lineNametr);
         linearLayoutProgress = (LinearLayout) findViewById(R.id.progress);
         imgVolumeImage = (ImageView) findViewById(R.id.volumeimage);
+        musicID = getIntent().getStringExtra("musicID");
+        if (musicID != null) {
+            trek = Integer.parseInt(musicID);
+            Log.d("Nazvanie pesni--------", musicID);
+        }
 
         imgVolumeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (volumeImage) {
                     volumeImage = false;
+                    pointVolume = seekBarVolume.getProgress();
                     seekBarVolume.setProgress(0);
                     imgVolumeImage.setImageResource(R.drawable.red_line);
 
                 } else {
                     volumeImage = true;
-                    seekBarVolume.setProgress(100);
+                    seekBarVolume.setProgress(pointVolume);
                     imgVolumeImage.setImageResource(R.drawable.vois);
                 }
 
@@ -97,19 +105,25 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             @Override
             public void onClick(View view) {
                 seekBarVolume.setProgress(seekBarVolume.getProgress() - 1);
+                if (seekBarVolume.getProgress() == 0){
+                    imgVolumeImage.setImageResource(R.drawable.red_line);
+                }
             }
         });
+
 
         findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 seekBarVolume.setProgress(seekBarVolume.getProgress() + 1);
+                imgVolumeImage.setImageResource(R.drawable.vois);
             }
         });
 
         tempmp = new parseJSON("https://api.vk.com/method/audio.get?owner_id=20111260&&access_token=8b9c746a06252d374feb71641aacc858a6d902136783354f65d314a9397784556e27ff182fe4a36e55c95&album_id=61631342", "response").getJsonArray();
 
         //Log.d("898", tempmp.toString());
+
         /**
          * play media
          */
@@ -156,7 +170,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             }
         });
 
-        btnReplay.setOnClickListener(new View.OnClickListener(){
+        /*btnReplay.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -177,7 +191,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
 
             }
         });
-
+*/
 
         mediaPlayer = RSing.getMedia() /*new MediaPlayer()*/;
         Play();
@@ -228,6 +242,12 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                 public void onProgressChanged(SeekBar arg0, int progress, boolean arg2) {
                     audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                             progress, 0);
+                    imgVolumeImage.setImageResource(R.drawable.vois);
+                    if (seekBarVolume.getProgress() == 0){
+                        imgVolumeImage.setImageResource(R.drawable.red_line);
+                    }
+
+
                 }
             });
         } catch (Exception e) {
@@ -339,8 +359,8 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             btnPlay.setBackgroundResource(R.drawable.pause);
             if (play) {
                 try {
-                    //Log.d("589", "http://muz.returnt.ru/mp/" + tempmp.getJSONObject(trek).optString("muz_music_name_def"));
-                    mediaPlayer.setDataSource(getApplicationContext(), Uri.parse(tempmp.getJSONObject(trek).optString("url")));
+                    Log.d("589", "" + tempmp.getJSONObject(trek).getString("url"));
+                    mediaPlayer.setDataSource(tempmp.getJSONObject(trek).getString("url"));
                     //mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mediaPlayer.setOnCompletionListener(this);
                     mediaPlayer.setOnPreparedListener(this);
@@ -350,7 +370,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
 
                     play = false;
 
-                    lineName.setText(tempmp.getJSONObject(trek).optString("artist")+" || "+tempmp.getJSONObject(trek).optString("title"));
+                    lineName.setText(tempmp.getJSONObject(trek).getString("artist") + " || " + tempmp.getJSONObject(trek).getString("title"));
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -396,9 +416,9 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     /**
      * method updateReplay
      */
-    private void updateReplayButton() {
+    /*private void updateReplayButton() {
         mReplay = !mReplay;
-    }
+    }*/
 
 /*
     private void onClickk(View view) {
