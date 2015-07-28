@@ -3,8 +3,8 @@
     android:id="@+id/songs"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="#3d3d3d"
+    android:orientation="horizontal"
     android:weightSum="1">
 
     <RelativeLayout
@@ -12,45 +12,38 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imgLinerL"
-                android:layout_weight="0.17">
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.83">
+                android:orientation="vertical">
 
                 <ListView
                     android:id="@+id/lview"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:smoothScrollbar="false">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
                 </ListView>
+
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_logo"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="false"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="50dp">
+            android:layout_alignParentStart="false"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/background_logo"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:orientation="horizontal">
 
         </LinearLayout>
 

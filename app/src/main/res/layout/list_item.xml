@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="4px"
+        android:layout_marginRight="10px"
+        android:src="@drawable/oblogka"
+        android:focusable="false"
+        android:focusableInTouchMode="false">
+    </ImageView>
 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="14dp"
-    android:background="@android:color/transparent"
-    android:textColor="#FFFFFF"
-    android:textSize="20sp"
-    android:textStyle="normal"
-    android:typeface="normal"
-    android:shadowColor="#ffeeeeee"
-    android:textIsSelectable="false"
-    android:id="@+id/text"
-    android:autoText="false">
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:lines="1"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        android:typeface="normal">
+    </TextView>
 
-</TextView>
+</LinearLayout>
