@@ -22,7 +22,6 @@ public class Register extends ActionBarActivity {
 
     Button btnRegister;
     EditText etName, etEmail, etPassword, etCoPassword;
-    CheckBox etCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,6 @@ public class Register extends ActionBarActivity {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         etCoPassword = (EditText) findViewById(R.id.etCoPassword);
-        etCheckBox = (CheckBox) findViewById(R.id.etCheckBox);
 
         final HttpRequest req = new HttpRequest();
 
@@ -50,15 +48,13 @@ public class Register extends ActionBarActivity {
             }else{
                     Map<String, String> map = new HashMap<String, String>();
 
-                    map.put("name", "findViewById(R.id.etName);");
+                    map.put("name", ((EditText) findViewById(R.id.etName)).getText().toString());
 
-                    map.put("email", "findViewById(R.id.etPassword);");
+                    map.put("email", ((EditText) findViewById(R.id.etEmail)).getText().toString());
 
-                    map.put("password", "findViewById(R.id.etPassword);");
+                    map.put("password", ((EditText) findViewById(R.id.etPassword)).getText().toString());
 
-                    map.put("confirm_password", "findViewById(R.id.etCoPassword);");
-
-                    map.put("checkBox", "findViewById(R.id.etCheckBox);");
+                    map.put("confirm_password", ((EditText) findViewById(R.id.etCoPassword)).getText().toString());
 
                     try {
                         if (!req.makePostRequestGetJsonArray("http://muz.returnt.ru/main/auth", map).isNull("user")) {

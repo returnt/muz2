@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:top="@dimen/auth_button_smeshchenie" android:left="@dimen/auth_button_smeshchenie">
+        <shape>
+            <corners
+                android:radius="@dimen/border_radius" />
+            <solid
+                android:color="#051905"/>
+        </shape>
+    </item>
+    <item
+        android:right="@dimen/auth_button_smeshchenie" android:bottom="@dimen/auth_button_smeshchenie">
+        <shape>
+            <corners
+                android:radius="@dimen/border_radius" />
+            <solid
+                android:color="#6EFF48"/>
+            <gradient
+                android:type="linear"
+                android:endColor="#30B91B"
+                android:startColor="#9FFFA3"
+                android:angle="270.0" />
+        </shape>
+    </item>
+
+</layer-list>
+
