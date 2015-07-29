@@ -63,7 +63,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     boolean replay = true;
     boolean mReplay = true;
     private String musicID;
-    private String category = "61878890";
+    private String category = "61951476";
     private TextView timeAll;
     private TextView timeSec;
     int pointVolume;

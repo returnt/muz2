@@ -2,6 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.astam.box_music2.Playlist">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <!--<item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />-->
+    <item android:id="@+id/backToPlayer"
+        android:title="@string/player"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/backToHomePage"
+        android:title="@string/toMainPage"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>

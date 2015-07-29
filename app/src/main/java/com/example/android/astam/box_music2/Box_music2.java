@@ -172,7 +172,7 @@ public class Box_music2 extends Activity {
         catAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getApplicationContext(), Genres.class));
             }
         });
         catIco.addView(catAll, layoutCatIcoAll);
@@ -275,7 +275,7 @@ public class Box_music2 extends Activity {
         catAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getApplicationContext(), Genres.class));
             }
         });
         catIco.addView(catAll, layoutCatIcoAll);
