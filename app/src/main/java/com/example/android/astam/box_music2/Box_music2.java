@@ -177,12 +177,12 @@ public class Box_music2 extends Activity {
         });
         catIco.addView(catAll, layoutCatIcoAll);
 
-        findViewById(R.id.auth_button).setOnClickListener(new View.OnClickListener() {
+        /*findViewById(R.id.auth_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
-        });
+        });*/
     }
 
     private void setVerticalNew(){
