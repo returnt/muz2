@@ -74,7 +74,7 @@ public class Box_music2 extends Activity {
         findViewById(R.id.PlayRand).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Player.class));
+                startActivity(new Intent(Box_music2.this, Player.class));
 
             }
         });

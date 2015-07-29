@@ -19,13 +19,13 @@
     <string name="title_activity_personal_cabinet">Personal_cabinet</string>
     <string name="title_activity_facebook">Facebook</string>
     <string name="facebook">Facebook</string>
-    <string name="player">Плеер</string>
-    <string name="toMainPage">На главную</string>
+    <string name="player">Player</string>
+    <string name="toMainPage">Home</string>
     <string name="playlist">Playlist</string>
-    <string name="auth_btn">Авторизация</string>
+    <string name="auth_btn">Auth</string>
     <string name="mail">E-mail</string>
     <string name="pass">Password</string>
-    <string name="enter">Вход</string>
+    <string name="enter">Enter</string>
     <string name="register">Регистрация</string>
     <string name="auth">Авторизация</string>
 

@@ -1,9 +1,5 @@
 package com.example.android.astam.box_music2;
 
-/**
- * Created by Ruslan1 on 29.07.2015.
- */
-
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;
@@ -37,8 +33,8 @@ public class ImageTextAdapter extends BaseAdapter {
     }
 
     public String[] catTitl = {"trance", "techno", "rock", "reggae", "rap",
-    "metal", "jazz", "house", "hip hop", "dubstep", "dnb", "classical", "blues",
-    "alternative", "pop"};
+            "metal", "jazz", "house", "hip hop", "dubstep", "dnb", "classical", "blues",
+            "alternative", "pop"};
 
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -64,13 +60,23 @@ public class ImageTextAdapter extends BaseAdapter {
     }
 
 
-    public Integer[] mThumbIds = { R.drawable.alternative, R.drawable.blues,
-            R.drawable.classical, R.drawable.dnb, R.drawable.dubstep,
-            R.drawable.hip_hop, R.drawable.house, R.drawable.jazz,
-            R.drawable.metal, R.drawable.pop, R.drawable.rap,
-            R.drawable.reggae, R.drawable.techno, R.drawable.trance,
-            R.drawable.rock };
+    public Integer[] mThumbIds = {
+            R.drawable.trance,
+            R.drawable.techno,
+            R.drawable.rock,
+            R.drawable.reggae,
+            R.drawable.rap,
+            R.drawable.metal,
+            R.drawable.jazz,
+            R.drawable.house,
+            R.drawable.hip_hop,
+            R.drawable.dubstep,
+            R.drawable.dnb,
+            R.drawable.classical,
+            R.drawable.blues,
+            R.drawable.alternative,
+            R.drawable.pop,
+             };
 
 
 }
-

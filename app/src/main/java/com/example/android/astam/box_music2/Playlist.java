@@ -58,7 +58,7 @@ public class Playlist extends ActionBarActivity {
                 intent.putExtra("musicID", String.valueOf(position + 1));
                 intent.putExtra("category", getIntent().getStringExtra("category"));
                 //Log.d("999999999999999999", String.valueOf(id));
-                Log.d("55555555555555555555", String.valueOf(position));
+                //Log.d("55555555555555555555", String.valueOf(position));
                 startActivity(intent);
             }
         });
@@ -119,7 +119,7 @@ public class Playlist extends ActionBarActivity {
             /*case R.id.action_settings:
                 return true;*/
             case R.id.backToPlayer:
-                startActivity(new Intent(this, Player.class));
+                startActivity(new Intent(this, Player.class).putExtra("category", getIntent().getStringExtra("category")));
                 return true;
             case R.id.backToHomePage:
                 startActivity(new Intent(this, Box_music2.class));

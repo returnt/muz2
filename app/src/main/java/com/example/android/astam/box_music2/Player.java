@@ -2,6 +2,7 @@ package com.example.android.astam.box_music2;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -63,7 +64,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
     boolean replay = true;
     boolean mReplay = true;
     private String musicID;
-    private String category = "61951476";
+    private String category = "61951452";
     private TextView timeAll;
     private TextView timeSec;
     int pointVolume;
@@ -75,6 +76,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         setContentView(R.layout.activity_player);
         initControls();
+        Log.d("dfsdfs", "sdfsdfsdfsd");
 
         btnPlay = (ImageView) findViewById(R.id.BtnPlay);
         btnReplay = (ImageView) findViewById(R.id.btnReplay);
@@ -311,9 +313,18 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             case android.R.id.home:
                 finish();
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
+            case R.id.backToHomePage:
+                startActivity(new Intent(this, Box_music2.class));
+                return true;
+            case R.id.playlist:
+                startActivity(new Intent(this, Playlist.class).putExtra("category", category));
+
+                return true;
+
         }
+        return super.onOptionsItemSelected(item);
+
+
     }
 
     /**
