@@ -19,5 +19,8 @@
     <string name="title_activity_personal_cabinet">Personal_cabinet</string>
     <string name="title_activity_facebook">Facebook</string>
     <string name="facebook">Facebook</string>
+    <string name="player">Плеер</string>
+    <string name="toMainPage">На главную</string>
+    <string name="playlist">Playlist</string>
 
 </resources>
