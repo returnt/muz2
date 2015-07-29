@@ -19,6 +19,11 @@
     <string name="title_activity_personal_cabinet">Personal_cabinet</string>
     <string name="title_activity_facebook">Facebook</string>
     <string name="facebook">Facebook</string>
+<<<<<<< HEAD
+    <string name="player">Плеер</string>
+    <string name="toMainPage">На главную</string>
+    <string name="playlist">Playlist</string>
+=======
     <string name="auth_btn">Авторизация</string>
     <string name="mail">E-mail</string>
     <string name="pass">Password</string>
@@ -27,5 +32,6 @@
     <string name="auth">Авторизация</string>
 
 
+>>>>>>> c2e2d7e4872e663b6558050616ea7731a0c2790a
 
 </resources>
