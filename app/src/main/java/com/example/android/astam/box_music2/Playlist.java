@@ -73,6 +73,7 @@ public class Playlist extends ActionBarActivity {
 
                 /*Log.d("muz_ico_name-----------", jasonArray.doInBackground(imgUrl) + "");
                 imgUrl = "http://muz.returnt.ru/img/" + pictureName;
+>>>>>>> 8067138f12e151e339a0797ddad8d1e25fba4a2b
 
                 TextView textView = (TextView) findViewById(R.id.text);
                 //Log.d("muz_ico_name--------------------", jasonArray.doInBackground(imgUrl) + "");

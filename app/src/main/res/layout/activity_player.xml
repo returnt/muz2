@@ -291,6 +291,7 @@
 
     <TextView
         android:text=""
+
         android:textColor="#fff"
         android:id="@+id/lineNametr"
         android:layout_width="fill_parent"

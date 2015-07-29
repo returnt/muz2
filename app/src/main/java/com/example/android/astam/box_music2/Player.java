@@ -108,8 +108,13 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
             if(mediaPlayer.isPlaying()){
                 btnPlay.setBackgroundResource(R.drawable.pause);
                 play = false;
-            }else {
+                startProgressBar();
+                seekBar.setMax(mediaPlayer.getDuration());
+
+            } else {
                 backNext2();
+                startProgressBar();
+                seekBar.setMax(mediaPlayer.getDuration());
 
             }
             /*Play();
@@ -465,6 +470,7 @@ public class Player extends ActionBarActivity implements OnPreparedListener, OnC
                 }
             };
             handler.postDelayed(rn, 1000);
+            timeAll.setText(new Date(mediaPlayer.getDuration()).getMinutes() + ":" + new Date(mediaPlayer.getDuration()).getSeconds() + "");
         } else {
             mediaPlayer.pause();
             seekBar.setProgress(mediaPlayer.getCurrentPosition());
